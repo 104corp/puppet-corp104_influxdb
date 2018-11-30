@@ -1,0 +1,4 @@
+corp104_influxdb::http_proxy: ~
+corp104_influxdb::manage_repos: true
+corp104_influxdb::service_ensure: 'running'
+corp104_influxdb::version: 'present'
