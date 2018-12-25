@@ -1,7 +1,7 @@
 {
   "name": "104corp-corp104_influxdb",
   "description": "corp104_influxdb Module for Debian, Ubuntu, CentOS and RHEL.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "104corp",
   "summary": "Install, deploysm, and configures influxdb.",
   "license": "Apache-2.0",
