@@ -1,5 +1,5 @@
 # puppet module corp104_influxdb
-[![Build Status](https://travis-ci.org/104corp/puppet-corp104_influxdb.svg?branch=master)](https://travis-ci.org/104corp/puppet-corp104_influxdb)
+[![Build Status](https://travis-ci.com/104corp/puppet-corp104_influxdb.svg?branch=master)](https://travis-ci.com/104corp/puppet-corp104_influxdb)
 
 
 #### Table of Contents
@@ -32,29 +32,11 @@ All parameters for the ntp module are contained within the main `::corp104_influ
 include '::corp104_influxdb'
 ```
 
-### Install specially node version. default '8.8.0'
+### Install specially influxdb version for package ensure.'
 
 ```puppet
 class { 'corp104_influxdb':
-  node_version => '6.11.5',
-}
-```
-
-### Set default node version.
-
-```puppet
-class { 'corp104_influxdb':
-  node_version => '6.11.5',
-  set_default  => true,
-}
-```
-
-### Download package to Use a Proxy
-
-```puppet
-class { 'corp104_influxdb':
-  http_proxy   => 'http://change.proxy.com:3128',
-  node_version => '6.11.5',
+  version => '1.7.2-1',
 }
 ```
 
@@ -69,8 +51,8 @@ class { 'corp104_influxdb':
 #### Private classes
 
 * corp104_influxdb::install Handles the packages.
-* corp104_influxdb::install::node Handles the node packages.
-* corp104_influxdb::config Handles the config.
+* corp104_influxdb::config Handles the node packages.
+* corp104_influxdb::service Handles the config.
 
 
 ## Limitations

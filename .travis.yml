@@ -32,7 +32,7 @@ matrix:
     sudo: required
   - rvm: 2.3.1
     bundler_args: "--without system_tests"
-    env: PUPPET_GEM_VERSION="~> 5.0"
+    env: PUPPET_GEM_VERSION="~> 6.0"
 notifications:
   email: false
   slack:
@@ -40,4 +40,4 @@ notifications:
       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
       - 'Commit message : %{commit_message}'
     rooms:
-      secure: "C7WA54EIofb72Twok2sRc25e1DuIKcNF+JhHp2hk4JocKL7xaqMivPd13i8ufuKcJuU3ZVREOLKUHyMuhO2X0CXIG7AEGE8Q2+9kE0LKqb4n2ptw8sMh1y3SYKY90muXD9+KbKt1OnvzWFcHvqRc8rDHuTlVnj/KRiNkrBfLdpEy7nSnyU2/Wmpyp/YuXVBMvxrUuO52h5ILeiWmf6OQSVDHrAtsOTzmTRVHzfGx3VJfb2dmW5HkEaQhXMLRwbyRXqw8nsS5Gfew1VK+vfILvynmXdbmOjCvSBMiY5UjGMmT0WO78NmnlzE1AljgFbveYSkkNTPyfPOrCLeEbV3sYqCu4TB5AQPlM079G4uqdu6zgxT6O/6hac0U2M0PjrWbIvwt7SJAd4/gSH7XcCAr8gfoJf/PmOtVdP8xnX7/hkYfhxf4XHa+yzDLwLOKnrCmVPnwRqmGZpWezUFGKRFZ3a4ayBoCZRK/+K/UezCAO4yuQIoI+aVRgLGnOwc2Myt72hR177DtrK+m0zBOTAS1DRKMSRmukMv5BAq6MftZZgI7ZJ20b7aHBteA2zB4AuwOYsZJzDOguVkTMnPsMTHL1Gp8rWRB0JPuEEDiJk+pVvMTIay3ai5KnoYEMSUaTLRj6d+kyxZFyAZzz/ZzSylg6heCDmZQksA4VW05HW9COZ0="
+      secure: "uJzF/xOUPY+oJNluJC3+pA7AIW02qRRAD667Xhw0wIjvZRAYjW+K5Bu0vLjekF0XdaKJmy1XYMyDQRYgnr8a8w6lZwRtyg/teZDMhSG7jeA2ZimxnmK32XrnbFs4Ujb467wwT7JZ1g+egZGDfMqahB/BCihVKhHCfGG9TwPr44XC59tu2SI8RFguw696f8EiLgYrU+9qFSOxQ8CMlfqdKSPcIof906pF1u5EE8pdxih5P6FJoYJ7l1vm1Zg8q3pQi5OcJRDoWsrg/wAkqjFVZm3SqYrFuwvMT8LkgHi+BBXy8bH6lZsSgDFt9/AGS7S7CRCpcQx53hlL1rhMdAAMKUxAORuuYcr0k3hmXJGg1DbjhmYoCRJffF/Hy476rlQI1UlLJihHDA6MpGA2yB4yWA2C7v4WfMhmLSonQPFrVhd/AKw0JB5Ju1t61gTuMmYzc/qEwZvDCxsXGMLH/N/wK67JwMpGdV107DVaeCRPRLv07QB48/BNvyeIvlIUI5khvOG2xdV5xU9HF2Qt4IvvqP3D/g/NWQ8X/PJF/gfx10PV+WkWeoE9lH8NgndRPqoSPRGI7HAKwMpCcF50lg2snFfrMY4CZVi8ujuKqELIPjWCt/7CfJtDAQKfxVBI9PJfldBngGjb2AfEiwjupqosTeuCfyT9vI2MBShTqoyjxBk="

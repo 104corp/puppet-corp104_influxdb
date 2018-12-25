@@ -1,4 +1,83 @@
 corp104_influxdb::http_proxy: ~
 corp104_influxdb::manage_repos: true
+corp104_influxdb::package_name: 'influxdb'
 corp104_influxdb::service_ensure: 'running'
+corp104_influxdb::service_name: 'influxdb'
 corp104_influxdb::version: 'present'
+corp104_influxdb::service_default_conf: '/etc/default/influxdb'
+corp104_influxdb::service_default_opts: ~
+corp104_influxdb::config_file: '/etc/influxdb/influxdb.conf'
+corp104_influxdb::stderr_log: '/var/log/influxdb/influxd.log'
+corp104_influxdb::stdout_log: '/var/log/influxdb/influxd.log'
+corp104_influxdb::global_config:
+  reporting-enabled: false
+corp104_influxdb::meta_config:
+  enable: true
+  dir: '/var/lib/influxdb/meta'
+  bind-address: ':8088'
+  retention-autocreate: true
+  election-timeout: '1s'
+  heartbeat-timeout: '1s'
+  leader-lease-timeout: '500ms'
+  commit-timeout: '50ms'
+  cluster-tracing: false
+corp104_influxdb::data_config:
+  enabled: true
+  dir: '/var/lib/influxdb/data'
+  max-wal-size: 104857600
+  wal-flush-interval: '10m'
+  wal-partition-flush-delay: '2s'
+  wal-dir: '/var/lib/influxdb/wal'
+  wal-logging-enabled: true
+  data-logging-enabled: true
+corp104_influxdb::hinted_handoff_config:
+  enable: true
+  dir: '/var/lib/influxdb/hh'
+  max-size: 1073741824
+  max-age: '168h'
+  retry-rate-limit: 0
+  retry-interval: '1s'
+  retry-max-interval: '1m'
+  purge-interval: '1h'
+corp104_influxdb::cluster_config:
+  shard-writer-timeout: '5s'
+  write-timeout: '10s'
+corp104_influxdb::retention_config:
+  enable: true
+  check-interval: '30m'
+corp104_influxdb::shard_precreation_config:
+  enabled: true
+  check-interval: '10m'
+  advance-period: '30m'
+corp104_influxdb::monitor_config:
+  store-enabled: true
+  store-database: '_internal'
+  store-interval: '10s'
+corp104_influxdb::admin_config:
+  enable: true
+  bind-address: ':8083'
+  https-enabled: false
+  https-certificate: '/etc/ssl/influxdb.pem'
+corp104_influxdb::http_config:
+  enable: true
+  bind-address: ':8086'
+  auth-enabled: false
+  log-enabled: true
+  write-tracing: false
+  pprof-enabled: false
+  https-enabled: false
+  https-certificate: '/etc/ssl/influxdb.pem'
+corp104_influxdb::graphite_config:
+  enable: false
+corp104_influxdb::collectd_config:
+  enable: false
+corp104_influxdb::opentsdb_config:
+  enable: false
+corp104_influxdb::udp_config:
+  enable: false
+corp104_influxdb::continuous_queries_config:
+  log-enabled: true
+  enable: true
+corp104_influxdb::coordinator_config: ~
+corp104_influxdb::subscriber_config:
+  enable: false

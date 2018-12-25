@@ -9,12 +9,14 @@ describe 'corp104_influxdb', :type => 'class' do
         :lsbdistid       => 'Ubuntu',
         :osfamily        => 'Debian',
         :lsbdistcodename => 'xenial',
+        :operatingsystem => 'Ubuntu'
       }
     end
     it do
       should contain_class('corp104_influxdb')
       should contain_class('corp104_influxdb::install')
-      should contain_class('corp104_influxdb::install::node')
+      should contain_class('corp104_influxdb::config')
+      should contain_class('corp104_influxdb::service')
     end
 
     it do

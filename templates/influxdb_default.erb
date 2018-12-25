@@ -1,0 +1,7 @@
+# This /etc/default/influxdb is Managed by Puppet
+
+STDERR=<%= @stderr_log %>
+STDOUT=<%= @stdout_log %>
+<% if @service_default_opts -%>
+INFLUXD_OPTS="<%= @service_default_opts %>"
+<% end -%>

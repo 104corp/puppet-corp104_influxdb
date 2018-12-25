@@ -18,8 +18,8 @@ class corp104_influxdb::install inherits corp104_influxdb {
   }
 
   package { 'influxdb':
-    ensure => $influxdb::version,
-    name   => 'influxdb',
+    ensure => $corp104_influxdb::version,
+    name   => $corp104_influxdb::package_name,
   }
 
 }

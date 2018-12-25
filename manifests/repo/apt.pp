@@ -1,5 +1,5 @@
 class corp104_influxdb::repo::apt inherits corp104_influxdb {
-  #downcase operatingsystem
+  # downcase operatingsystem
   $_operatingsystem = downcase($::operatingsystem)
 
   $key = {
@@ -13,6 +13,5 @@ class corp104_influxdb::repo::apt inherits corp104_influxdb {
     release  => $::lsbdistcodename,
     repos    => 'stable',
     key      => $key,
-    include  => { 'src' => true },
   }
 }

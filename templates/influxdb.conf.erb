@@ -1,0 +1,171 @@
+# This influxdb.conf is Managed by Puppet
+<%-
+  def value_parser(v)
+    return v if v =~ /^[\d]+$/
+    return v if v.is_a?(Integer)
+    return v if v.is_a?(TrueClass)
+    return v if v.is_a?(FalseClass)
+    return v if v.is_a?(Float)
+    return v if v.is_a?(Array)
+    # if we get here just return a string
+    return "\"#{v}\""
+  end
+  def build_section(section_name, config, show_header=true)
+    result = []
+    if config and ! config.empty?
+      result << "[#{section_name}]" if show_header
+      config.sort_by{|key, value| key}.each do |key, value|
+        val = value_parser(value)
+        result << "#{key} = #{val}"
+      end
+    end
+    result.empty? ? '' : result.join("\n")
+  end
+  def build_sub_section(section_name, config)
+    result = []
+    if config and ! config.empty?
+      result << "[[#{section_name}]]"
+      config.each do |name, data|
+        result << build_section(name, data, false)
+      end
+    end
+    result.empty? ? '' : result.join("\n").chomp
+  end
+-%>
+### Welcome to the InfluxDB configuration file.
+
+# Once every 24 hours InfluxDB will report anonymous data to m.influxdb.com
+# The data includes raft id (random 8 bytes), os, arch, version, and metadata.
+# We don't track ip addresses of servers reporting. This is only used
+# to track the number of instances running and the versions, which
+# is very helpful for us.
+
+# GLOBAL configuration options
+<%= build_section('global', @global_config, false) %>
+
+###
+### [meta]
+###
+### Controls the parameters for the Raft consensus group that stores metadata
+### about the InfluxDB cluster.
+###
+<%= build_section('meta', @meta_config) %>
+
+###
+### [data]
+###
+### Controls where the actual shard data for InfluxDB lives and how it is
+### flushed from the WAL. "dir" may need to be changed to a suitable place
+### for your system, but the WAL settings are an advanced configuration. The
+### defaults should work for most systems.
+###
+<%= build_section('data', @data_config) %>
+
+###
+### [hinted-handoff]
+###
+### Controls the hinted handoff feature, which allows nodes to temporarily
+### store queued data when one node of a cluster is down for a short period
+### of time.
+###
+<%= build_section('hinted-handoff', @hinted_handoff_config) %>
+
+###
+### [cluster]
+###
+### Controls non-Raft cluster behavior, which generally includes how data is
+### shared across shards.
+###
+<%= build_section('retention', @cluster_config) %>
+
+###
+### [retention]
+###
+### Controls the enforcement of retention policies for evicting old data.
+###
+<%= build_section('retention', @retention_config) %>
+
+###
+### [shard-precreation]
+###
+### Controls the precreation of shards, so they are available before data arrives.
+### Only shards that, after creation, will have both a start- and end-time in the
+### future, will ever be created. Shards are never precreated that would be wholly
+### or partially in the past.
+<%= build_section('shard-precreation', @shard_precreation_config) %>
+
+###
+### Controls the system self-monitoring, statistics and diagnostics.
+###
+### The internal database for monitoring data is created automatically if
+### if it does not already exist. The target retention within this database
+### is called 'monitor' and is also created with a retention period of 7 days
+### and a replication factor of 1, if it does not exist. In all cases the
+### this retention policy is configured as the default for the database.
+<%= build_section('monitor', @monitor_config) %>
+
+###
+### [admin]
+###
+### Controls the availability of the built-in, web-based admin interface. If HTTPS is
+### enabled for the admin interface, HTTPS must also be enabled on the [http] service.
+###
+<%= build_section('admin', @admin_config) %>
+
+###
+### [http]
+###
+### Controls how the HTTP endpoints are configured. These are the primary
+### mechanism for getting data into and out of InfluxDB.
+###
+<%= build_section('http', @http_config) %>
+
+###
+### [[graphite]]
+###
+### Controls one or many listeners for Graphite data.
+###
+<%= build_sub_section('graphite', @graphite_config) %>
+
+###
+### [[collectd]]
+###
+### Controls the listener for collectd data.
+###
+<%= build_sub_section('collectd', @collectd_config) %>
+
+###
+### [[opentsdb]]
+###
+### Controls the listener for OpenTSDB data.
+###
+<%= build_sub_section('opentsdb', @opentsdb_config) %>
+
+###
+### [[udp]]
+###
+### Controls the listeners for InfluxDB line protocol data via UDP.
+###
+<%= build_sub_section('udp', @udp_config) %>
+
+###
+### [continuous_queries]
+###
+### Controls how continuous queries are run within InfluxDB.
+###
+<%= build_section('continuous_queries', @continuous_queries_config) %>
+
+###
+### [logging]
+###
+<%= build_section('logging', @logging_config) %>
+
+###
+### [coordinator]
+###
+<%= build_section('coordinator', @coordinator_config) %>
+
+###
+### [subscriber]
+###
+<%= build_section('subscriber', @subscriber_config) %>
