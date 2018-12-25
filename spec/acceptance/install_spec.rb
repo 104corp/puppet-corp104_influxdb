@@ -15,7 +15,7 @@ describe 'install corp104_influxdb' do
     it 'should install package' do
       pp = <<-EOS
         class { 'corp104_influxdb':
-          node_version => '8.8.0'
+          version => '1.7.2-1'
         }
       EOS
 
